@@ -24,3 +24,22 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+
+    lista = list()
+
+    with open('files/input/data.csv', 'r', encoding='utf-8') as archivo:
+        for linea in archivo:
+            subLista = list(linea.strip().split('\t'))
+            diccionarios = subLista[4].split(",")
+            for dic in diccionarios:
+                lista.append((dic[0:3]))
+
+    lista_dics = list(set(lista))
+    lista_dics.sort()    
+
+    tuplas = dict()
+    for dic in lista_dics:
+        cuenta = lista.count(dic)
+        tuplas[dic] = cuenta
+
+    return tuplas

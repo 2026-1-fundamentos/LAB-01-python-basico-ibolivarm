@@ -26,3 +26,22 @@ def pregunta_04():
      ('12', 3)]
 
     """
+
+    lista = list()
+
+    with open('files/input/data.csv', 'r', encoding='utf-8') as archivo:
+        for linea in archivo:
+            subLista = list(linea.strip().split('\t'))
+            fecha = subLista[2]
+            mes = fecha.split("-")[1]
+            lista.append(mes)
+
+    lista_meses = set(lista)    
+
+    tuplas = list()
+    for mes in lista_meses:
+        cuenta = lista.count(mes)
+        tuplas.append((mes, cuenta))
+
+    tuplas.sort()  
+    return tuplas

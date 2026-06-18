@@ -20,3 +20,14 @@ def pregunta_10():
 
 
     """
+
+    lista = list()
+
+    with open('files/input/data.csv', 'r', encoding='utf-8') as archivo:
+        for linea in archivo:
+            subLista = list(linea.strip().split('\t'))
+            lista.append((subLista[0], len(subLista[3].split(",")), len(subLista[4].split(","))))
+
+    return lista
+
+print(pregunta_10())

@@ -16,3 +16,27 @@ def pregunta_11():
 
 
     """
+
+    lista = list()
+
+    with open('files/input/data.csv', 'r', encoding='utf-8') as archivo:
+        for linea in archivo:
+            subLista = list(linea.strip().split('\t'))
+            letras = subLista[3].split(",")
+            for letra in letras:
+                lista.append((letra, int(subLista[1])))
+
+    lista_letras = list(set(x[0] for x in lista))
+
+    lista_letras.sort()
+
+    tuplas = dict()
+    for letra in lista_letras:
+        suma = 0
+        for tupla in lista:
+            if tupla[0]==letra:
+                suma += tupla[1]
+    
+        tuplas[letra] = suma
+
+    return tuplas

@@ -27,3 +27,25 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+
+    lista = list()
+
+    with open('files/input/data.csv', 'r', encoding='utf-8') as archivo:
+        for linea in archivo:
+            subLista = list(linea.strip().split('\t'))
+            lista.append((int(subLista[1]), subLista[0]))
+
+    lista_nums = set(x[0] for x in lista)    
+
+    tuplas = list()
+    for num in lista_nums:
+        lista_letras = list()
+        for tupla in lista:
+            if tupla[0]==num and tupla[1] not in lista_letras:
+                lista_letras.append(tupla[1])
+
+        lista_letras.sort()
+        tuplas.append((num, lista_letras))
+
+    tuplas.sort()  
+    return tuplas
